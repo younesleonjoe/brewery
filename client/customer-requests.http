@@ -1,0 +1,13 @@
+### fetch Customers
+GET http://localhost:8080/api/v1/customers
+
+> {%
+console.log(response.body);
+client.global.set('id', response.body[0].valueOf('id'));
+%}
+
+### fetch Customer
+< {%
+ request.variables.set('id', client.global.get('id'));
+ %}
+GET http://localhost:8080/api/v1/customers/{{id}}
