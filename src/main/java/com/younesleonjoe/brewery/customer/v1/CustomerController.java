@@ -1,4 +1,4 @@
-package com.younesleonjoe.brewery.customer;
+package com.younesleonjoe.brewery.customer.v1;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,24 +15,24 @@ public class CustomerController {
   private final CustomerService customerService;
 
   @GetMapping
-  public ResponseEntity<List<CustomerResponse>> findAll() {
+  public ResponseEntity<List<CustomerDTO>> findAll() {
     return new ResponseEntity<>(customerService.findAll(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<CustomerResponse> findById(@PathVariable UUID id) {
+  public ResponseEntity<CustomerDTO> findById(@PathVariable UUID id) {
     return new ResponseEntity<>(customerService.findById(id), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<CustomerResponse> create(@RequestBody CustomerRequest customerRequest) {
-    return new ResponseEntity<>(customerService.create(customerRequest), HttpStatus.CREATED);
+  public ResponseEntity<CustomerDTO> create(@RequestBody CustomerDTO customerDTO) {
+    return new ResponseEntity<>(customerService.create(customerDTO), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void update(@PathVariable("id") UUID id, @RequestBody CustomerRequest customerRequest) {
-    customerService.update(id, customerRequest);
+  public void update(@PathVariable("id") UUID id, @RequestBody CustomerDTO customerDTO) {
+    customerService.update(id, customerDTO);
   }
 
   @DeleteMapping("/{id}")
