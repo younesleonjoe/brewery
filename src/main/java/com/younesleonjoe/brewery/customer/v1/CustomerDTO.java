@@ -1,4 +1,4 @@
-package com.younesleonjoe.brewery.customer;
+package com.younesleonjoe.brewery.customer.v1;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerRequest {
+public class CustomerDTO {
 	private UUID id;
 	private String name;
 }
