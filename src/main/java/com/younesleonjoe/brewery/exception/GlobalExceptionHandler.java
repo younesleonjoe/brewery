@@ -1,7 +1,7 @@
 package com.younesleonjoe.brewery.exception;
 
 import com.younesleonjoe.brewery.beer.v1.BeerNotFoundException;
-import com.younesleonjoe.brewery.customer.CustomerNotFoundException;
+import com.younesleonjoe.brewery.customer.v1.CustomerNotFoundException;
 import com.younesleonjoe.brewery.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
