@@ -1,4 +1,4 @@
-package com.younesleonjoe.brewery.customer;
+package com.younesleonjoe.brewery.customer.v1;
 
 import java.util.UUID;
 
