@@ -3,6 +3,7 @@ package com.younesleonjoe.brewery.customer.v1;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,10 @@ public class CustomerController {
 
   @PostMapping
   public ResponseEntity<CustomerDTO> create(@RequestBody CustomerDTO customerDTO) {
-    return new ResponseEntity<>(customerService.create(customerDTO), HttpStatus.CREATED);
+    CustomerDTO created = customerService.create(customerDTO);
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Location", "/api/v1/customers/" + created.getId().toString());
+    return new ResponseEntity<>(headers, HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
