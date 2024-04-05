@@ -1,5 +1,6 @@
 package com.younesleonjoe.brewery.beer.v1;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class BeerController {
   }
 
   @PostMapping
-  public ResponseEntity<BeerDTO> create(@RequestBody BeerDTO beerDTO) {
+  public ResponseEntity<BeerDTO> create(@Valid @RequestBody BeerDTO beerDTO) {
     BeerDTO createdBeerDTO = beerService.create(beerDTO);
     HttpHeaders headers = new HttpHeaders();
     headers.add("Location", "/api/v1/beers/" + createdBeerDTO.getId().toString());
@@ -35,7 +36,7 @@ public class BeerController {
 
   @PutMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void update(@PathVariable("id") UUID id, @RequestBody BeerDTO BeerDTO) {
+  public void update(@PathVariable("id") UUID id, @Valid @RequestBody BeerDTO BeerDTO) {
     beerService.update(id, BeerDTO);
   }
 
