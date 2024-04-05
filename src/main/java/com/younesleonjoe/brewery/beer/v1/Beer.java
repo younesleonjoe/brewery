@@ -1,14 +1,13 @@
 package com.younesleonjoe.brewery.beer.v1;
 
 import jakarta.persistence.*;
-
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
+import org.hibernate.type.SqlTypes;
 
 @Getter
 @Setter
@@ -16,12 +15,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "beer")
 public class Beer {
 
   @Id
-  @GeneratedValue(generator = "UUID")
+  @GeneratedValue(strategy = GenerationType.UUID)
   @GenericGenerator(name = "UUID", type = org.hibernate.id.uuid.UuidGenerator.class)
-  @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+  @Column(columnDefinition = "varchar(36)", updatable = false, nullable = false)
+  @JdbcTypeCode(SqlTypes.VARCHAR)
   private UUID id;
 
   @Version private Long version;
