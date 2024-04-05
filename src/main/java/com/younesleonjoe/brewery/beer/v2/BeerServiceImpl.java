@@ -4,7 +4,7 @@ import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("BeerServiceImplV2")
 @Slf4j
 public class BeerServiceImpl implements BeerService {
 

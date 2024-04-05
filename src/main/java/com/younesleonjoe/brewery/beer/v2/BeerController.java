@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("BeerControllerV2")
 @RequestMapping("/api/v2/beers")
 @RequiredArgsConstructor
 public class BeerController {

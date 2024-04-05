@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("BeerControllerV1")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/beers")
 public class BeerController {
@@ -29,7 +29,7 @@ public class BeerController {
   public ResponseEntity<BeerDTO> create(@RequestBody BeerDTO beerDTO) {
     BeerDTO createdBeerDTO = beerService.create(beerDTO);
     HttpHeaders headers = new HttpHeaders();
-    headers.add("Location", "/api/v1/beer/" + createdBeerDTO.getId().toString());
+    headers.add("Location", "/api/v1/beers/" + createdBeerDTO.getId().toString());
     return new ResponseEntity<>(headers, HttpStatus.CREATED);
   }
 
