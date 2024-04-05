@@ -3,4 +3,13 @@ services:
   zipkin:
     image: 'openzipkin/zipkin:latest'
     ports:
-      - '9411:9411'
+      - '9410'
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=brewery'
+      - 'MYSQL_PASSWORD=secret'
+      - 'MYSQL_ROOT_PASSWORD=secret'
+      - 'MYSQL_USER=user'
+    ports:
+      - '3306'
