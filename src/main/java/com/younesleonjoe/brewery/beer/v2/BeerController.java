@@ -1,16 +1,20 @@
 package com.younesleonjoe.brewery.beer.v2;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("BeerControllerV2")
 @RequestMapping("/api/v2/beers")
 @RequiredArgsConstructor
+@Validated
 public class BeerController {
 
   private final BeerService beerService;
@@ -21,13 +25,14 @@ public class BeerController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<com.younesleonjoe.brewery.beer.v1.BeerDTO> findById(@PathVariable UUID id) {
+  public ResponseEntity<com.younesleonjoe.brewery.beer.v1.BeerDTO> findById(
+      @NotNull @PathVariable UUID id) {
     return new ResponseEntity<>(beerService.findById(id), HttpStatus.OK);
   }
 
   @PostMapping
   public ResponseEntity<com.younesleonjoe.brewery.beer.v1.BeerDTO> create(
-      @RequestBody com.younesleonjoe.brewery.beer.v1.BeerDTO beerDTO) {
+      @Valid @NotNull @RequestBody com.younesleonjoe.brewery.beer.v1.BeerDTO beerDTO) {
     com.younesleonjoe.brewery.beer.v1.BeerDTO createdBeerDTO = beerService.create(beerDTO);
     HttpHeaders headers = new HttpHeaders();
     headers.add("Location", "/api/v1/beer/" + createdBeerDTO.getId().toString());
@@ -36,7 +41,7 @@ public class BeerController {
 
   @PutMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void update(@PathVariable("id") UUID id, @RequestBody BeerDTO BeerDTO) {
+  public void update(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody BeerDTO BeerDTO) {
     beerService.update(id, BeerDTO);
   }
 
